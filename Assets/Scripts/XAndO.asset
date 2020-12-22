@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef8e0f13a3679a4b8f5d69656c396e6, type: 3}
+  m_Name: XAndO
+  m_EditorClassIdentifier: 
+  emptyCellSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  XCellSprite: {fileID: 21300000, guid: fe45cd96a919c1c4f8ce135ca5f70405, type: 3}
+  YCellSprite: {fileID: 21300000, guid: 1aae70b1e94ee4442a7b92976b7fa1e1, type: 3}
