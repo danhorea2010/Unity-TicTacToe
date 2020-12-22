@@ -33,7 +33,6 @@ public class TicTacToe : MonoBehaviour
 
     private void Start(){
 
-
         // Load score
         this.scoreX = PlayerPrefs.GetInt(scoreXKey,0);
         this.scoreY = PlayerPrefs.GetInt(scoreYKey,0);
@@ -59,41 +58,7 @@ public class TicTacToe : MonoBehaviour
         return emptyCells;
     }
 
-    void AiTurn2(){
-        List<Cell> emptyCells = EmptyCells(this.grid);
-        int depth = emptyCells.Count;
-
-        // Or gameOver
-        if(depth == 0)
-            return;
-
-
-        Cell[] cells = this.grid.GetCells();
-        int x,y;
-        Move move;
-        if(depth == 9 ){
-            UnityEngine.Random rnd = new UnityEngine.Random();
-
-            x = UnityEngine.Random.Range(0,3);
-            y = UnityEngine.Random.Range(0,3);
-
-            while(cells[x+y*3].GetToken() != CellType.EMPTY){
-                x = UnityEngine.Random.Range(0,3);
-                y = UnityEngine.Random.Range(0,3);
-           }
-
-        }
-        else{
-            move = ai.Minimax(this.grid, depth, CellType.X);
-            x = move.x;
-            y = move.y;
-        }
-
-        cells[x+y*3].SetToken(CellType.X);
-
-    }
-
-    void AiTurn(){
+    void AiTurn(CellType cellType){
         List<Cell> emptyCells = EmptyCells(this.grid);
         int depth = emptyCells.Count;
 
@@ -106,7 +71,6 @@ public class TicTacToe : MonoBehaviour
         int x,y;
         Move move;
         if(depth == 9){
-            UnityEngine.Random rnd = new UnityEngine.Random();
 
             x = UnityEngine.Random.Range(0,3);
             y = UnityEngine.Random.Range(0,3);
@@ -118,32 +82,31 @@ public class TicTacToe : MonoBehaviour
 
         }
         else{
-            move = ai.Minimax(this.grid, depth, CellType.Y);
+            move = ai.Minimax(this.grid, depth, cellType);
             x = move.x;
             y = move.y;
         }
 
-        cells[x+y*3].SetToken(CellType.Y);
-
-
+        cells[x+y*3].SetToken(cellType);
 
     }
+
 
     void Update(){
 
         // Ai is Y
         if(currentTurn == CellType.Y && !won){
-            AiTurn();
+            AiTurn(CellType.Y);
             currentTurn = CellType.X;
             GridUi.Instance.UpdateGrid();
             CheckWin();
         }
-       // else if(!won){
-       //     AiTurn2();
-       //     currentTurn = CellType.Y;
-       //     GridUi.Instance.UpdateGrid();
-       //     CheckWin();
-       // }
+        //else if(!won){
+        //    AiTurn(CellType.X);
+        //    currentTurn = CellType.Y;
+        //    GridUi.Instance.UpdateGrid();
+        //    CheckWin();
+        //}
 
     }
 
